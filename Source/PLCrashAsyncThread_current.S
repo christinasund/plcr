@@ -148,12 +148,21 @@ movl    %eax, 48+OFF(%esp)
 /* Use the return address for our RIP value */
 movl    0x4(%ebp), %eax
 movl    %eax, 52+OFF(%esp)
-
-MOVL    (cs, 56);
-MOVL    (ds, 60);
-MOVL    (es, 64);
-MOVL    (fs, 68);
-MOVL    (gs, 72);
+// movq    $0, 160(%rsp);
+movl    $0, 56(%esp);
+movw    %cs, 56(%esp);
+//MOVL    (ds, 60);
+movl    $0, 60(%esp);
+movw    %ds, 56(%esp);
+//MOVL    (es, 64);
+movl    $0, 64(%esp);
+movw    %es, 64(%esp);
+//MOVL    (fs, 68);
+movl    $0, 68(%esp);
+movw    %fs, 68(%esp);
+//MOVL    (gs, 72);
+movl    $0, 72(%esp);
+movw    %gs, 72(%esp);
 #undef MOVL
 
 /* Set up our argument stack: writer (arg0), image_list, file, siginfo, mctx */
