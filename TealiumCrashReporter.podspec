@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TealiumCrashReporter"
-  s.version      = "1.3.2"
+  s.version      = "1.3.4"
   s.summary      = "Fork of the Plausible Labs PLCrashReporter repo."
   s.description  = "This fork contains code that is not part of the core PLCrashReporter distribution.  This software is not provided by or maintained by Plausible Labs."
 
