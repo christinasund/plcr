@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/Tealium/plcrashreporter" 
   s.platform = :ios, "8.0"
-  s.license      = { :type => "MIT", :file => "LICENSE" }
+  s.license      = { :type => "MIT" }
   s.author             = { "Jonathan Wong" => "jonathan.wong@tealium.com" }
 
   s.source       = { :http => "https://github.com/Tealium/plcrashreporter/blob/master/TealiumCrashReporteriOS.framework.zip?raw=true" }
