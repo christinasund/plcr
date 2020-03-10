@@ -36,7 +36,7 @@
 		05D9E55316765A0200B39833 /* PLCrashReportRegisterInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 05D9E54E16765A0200B39833 /* PLCrashReportRegisterInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05D9E55E16765D0200B39833 /* PLCrashReportSymbolInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 05D9E55916765D0200B39833 /* PLCrashReportSymbolInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05E7321D0EFA1BE1005EDFB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E7321C0EFA1BE1005EDFB7 /* main.m */; };
-		05E734320EFAC46D005EDFB7 /* PLCrashAsyncSignalInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E734300EFAC46D005EDFB7 /* PLCrashAsyncSignalInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05E734320EFAC46D005EDFB7 /* PLCrashAsyncSignalInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E734300EFAC46D005EDFB7 /* PLCrashAsyncSignalInfo.h */; };
 		05E734F70EFAE59C005EDFB7 /* PLCrashReportSignalInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E734F50EFAE59C005EDFB7 /* PLCrashReportSignalInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05E7485D1760D62A009B8745 /* PLCrashAsyncDwarfFDE.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 05E748591760D62A009B8745 /* PLCrashAsyncDwarfFDE.hpp */; };
 		05E7488D176135CF009B8745 /* PLCrashAsyncDwarfExpression.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 05E74889176135CE009B8745 /* PLCrashAsyncDwarfExpression.hpp */; };
@@ -1066,7 +1066,6 @@
 				2D0E104C1141F7DC00CE1BD6 /* PLCrashReportProcessInfo.h in Headers */,
 				05BB83CD1364A77800D53B84 /* PLCrashReportProcessorInfo.h in Headers */,
 				05BB83F51364AD3E00D53B84 /* PLCrashReportMachineInfo.h in Headers */,
-				05E734320EFAC46D005EDFB7 /* PLCrashAsyncSignalInfo.h in Headers */,
 				D722A83A2417DE8100048619 /* PLCrashReporter.h in Headers */,
 				D722A83B2417DE8100048619 /* PLCrashMacros.h in Headers */,
 				D722A83C2417DE8100048619 /* PLCrashFeatureConfig.h in Headers */,
@@ -1076,6 +1075,7 @@
 				0596702B0EEF6B1A008A0601 /* PLCrashLogWriter.h in Headers */,
 				05CD36D10EF25717000FDE88 /* PLCrashLogWriterEncoding.h in Headers */,
 				052A46C01363650100987004 /* PLCrashAsyncImageList.h in Headers */,
+				05E734320EFAC46D005EDFB7 /* PLCrashAsyncSignalInfo.h in Headers */,
 				05BB848A1364EDF200D53B84 /* PLCrashSysctl.h in Headers */,
 				05EB2B1215B6FDA80066EB4D /* PLCrashReporterNSError.h in Headers */,
 				0573B42F1681098E00395F2A /* PLCrashMachExceptionServer.h in Headers */,
