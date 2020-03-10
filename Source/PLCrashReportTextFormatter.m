@@ -29,7 +29,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import "CrashReporter/CrashReporter.h"
+#import "TealiumCrashReporteriOS/CrashReporter.h"
 
 #import "PLCrashReportTextFormatter.h"
 #import "PLCrashCompatConstants.h"

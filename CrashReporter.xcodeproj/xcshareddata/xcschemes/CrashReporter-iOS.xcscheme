@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "058812B81040582D009128FB"
                BuildableName = "CrashReporter.framework"
-               BlueprintName = "CrashReporter-iOS"
+               BlueprintName = "TealiumCrashReporter-iOS"
                ReferencedContainer = "container:CrashReporter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -52,7 +52,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "058812B81040582D009128FB"
             BuildableName = "CrashReporter.framework"
-            BlueprintName = "CrashReporter-iOS"
+            BlueprintName = "TealiumCrashReporter-iOS"
             ReferencedContainer = "container:CrashReporter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
