@@ -410,7 +410,7 @@
 		05C76DC7176FBAF300E9B10D /* PLCrashAsyncDwarfCFAState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PLCrashAsyncDwarfCFAState.hpp; sourceTree = "<group>"; };
 		05C76DD3176FBC1E00E9B10D /* PLCrashAsyncDwarfCFAStateTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PLCrashAsyncDwarfCFAStateTests.mm; sourceTree = "<group>"; };
 		05CD31520EE936A9000FDE88 /* libTealiumCrashReporteriOS-iphoneos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTealiumCrashReporteriOS-iphoneos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		05CD31630EE93905000FDE88 /* libTealiumCrashReporteriOS-iphonesimulator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTealiumCrashReporteriOS-iphonesimulator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05CD31630EE93905000FDE88 /* libTealiumCrashReporteriOS-iphoneos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTealiumCrashReporteriOS-iphoneos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CD31890EE93A90000FDE88 /* CrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashReporter.h; sourceTree = "<group>"; };
 		05CD318A0EE93A90000FDE88 /* CrashReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashReporter.m; sourceTree = "<group>"; };
 		05CD326A0EE93DC3000FDE88 /* Tests-MacOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-MacOSX-Info.plist"; sourceTree = "<group>"; };
@@ -548,7 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				05CD31520EE936A9000FDE88 /* libTealiumCrashReporteriOS-iphoneos.a */,
-				05CD31630EE93905000FDE88 /* libTealiumCrashReporteriOS-iphonesimulator.a */,
+				05CD31630EE93905000FDE88 /* libTealiumCrashReporteriOS-iphoneos.a */,
 				05E731E30EFA1A3E005EDFB7 /* plcrashutil */,
 				058812B91040582D009128FB /* TealiumCrashReporteriOS.framework */,
 			);
@@ -1407,7 +1407,7 @@
 			);
 			name = "TealiumCrashReporter-iOS-Simulator";
 			productName = "CrashReporter-iPhoneSimulator";
-			productReference = 05CD31630EE93905000FDE88 /* libTealiumCrashReporteriOS-iphonesimulator.a */;
+			productReference = 05CD31630EE93905000FDE88 /* libTealiumCrashReporteriOS-iphoneos.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		05E731E20EFA1A3E005EDFB7 /* plcrashutil */ = {
@@ -1789,9 +1789,9 @@
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "TealiumCrashReporteriOS${EFFECTIVE_PLATFORM_NAME}";
-				SDKROOT = iphonesimulator;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Debug;
 		};
@@ -1809,9 +1809,9 @@
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "TealiumCrashReporteriOS${EFFECTIVE_PLATFORM_NAME}";
-				SDKROOT = iphonesimulator;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				ZERO_LINK = NO;
 			};
 			name = Release;
