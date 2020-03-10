@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "05CD31620EE93905000FDE88"
-               BuildableName = "libCrashReporter-iphonesimulator.a"
+               BuildableName = "libTealiumCrashReporteriOS-iphonesimulator.a"
                BlueprintName = "TealiumCrashReporter-iOS-Simulator"
                ReferencedContainer = "container:CrashReporter.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05CD31620EE93905000FDE88"
-            BuildableName = "libCrashReporter-iphonesimulator.a"
+            BuildableName = "libTealiumCrashReporteriOS-iphonesimulator.a"
             BlueprintName = "TealiumCrashReporter-iOS-Simulator"
             ReferencedContainer = "container:CrashReporter.xcodeproj">
          </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05CD31620EE93905000FDE88"
-            BuildableName = "libCrashReporter-iphonesimulator.a"
+            BuildableName = "libTealiumCrashReporteriOS-iphonesimulator.a"
             BlueprintName = "TealiumCrashReporter-iOS-Simulator"
             ReferencedContainer = "container:CrashReporter.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05CD31620EE93905000FDE88"
-            BuildableName = "libCrashReporter-iphonesimulator.a"
+            BuildableName = "libTealiumCrashReporteriOS-iphonesimulator.a"
             BlueprintName = "TealiumCrashReporter-iOS-Simulator"
             ReferencedContainer = "container:CrashReporter.xcodeproj">
          </BuildableReference>

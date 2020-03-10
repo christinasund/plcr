@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "05CD31510EE936A9000FDE88"
-               BuildableName = "libCrashReporter-iphoneos.a"
+               BuildableName = "libTealiumCrashReporteriOS-iphoneos.a"
                BlueprintName = "TealiumCrashReporter-iOS-Device"
                ReferencedContainer = "container:CrashReporter.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05CD31510EE936A9000FDE88"
-            BuildableName = "libCrashReporter-iphoneos.a"
+            BuildableName = "libTealiumCrashReporteriOS-iphoneos.a"
             BlueprintName = "TealiumCrashReporter-iOS-Device"
             ReferencedContainer = "container:CrashReporter.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05CD31510EE936A9000FDE88"
-            BuildableName = "libCrashReporter-iphoneos.a"
+            BuildableName = "libTealiumCrashReporteriOS-iphoneos.a"
             BlueprintName = "TealiumCrashReporter-iOS-Device"
             ReferencedContainer = "container:CrashReporter.xcodeproj">
          </BuildableReference>
@@ -93,7 +93,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05CD31510EE936A9000FDE88"
-            BuildableName = "libCrashReporter-iphoneos.a"
+            BuildableName = "libTealiumCrashReporteriOS-iphoneos.a"
             BlueprintName = "TealiumCrashReporter-iOS-Device"
             ReferencedContainer = "container:CrashReporter.xcodeproj">
          </BuildableReference>

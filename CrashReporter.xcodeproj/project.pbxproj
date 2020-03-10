@@ -1685,6 +1685,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				MODULEMAP_FILE = Source/module.modulemap;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -1711,6 +1712,7 @@
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				MODULEMAP_FILE = Source/module.modulemap;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
