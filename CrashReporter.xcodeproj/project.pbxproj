@@ -1788,6 +1788,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = "$(PL_IOS_DEPLOYMENT_TARGET)";
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_MODULE_NAME = TealiumCrashReporter_iphonesimulator;
 				PRODUCT_NAME = "TealiumCrashReporteriOS${EFFECTIVE_PLATFORM_NAME}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1808,6 +1809,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = "$(PL_IOS_DEPLOYMENT_TARGET)";
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_MODULE_NAME = TealiumCrashReporter_iphonesimulator;
 				PRODUCT_NAME = "TealiumCrashReporteriOS${EFFECTIVE_PLATFORM_NAME}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
