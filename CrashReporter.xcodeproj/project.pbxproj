@@ -1318,7 +1318,7 @@
 					"-framework",
 					Foundation,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "coop.plausible.${PRODUCT_NAME:identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tealium.TealiumCrashReporteriOS;
 				PRODUCT_NAME = TealiumCrashReporteriOS;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1350,7 +1350,7 @@
 					"-framework",
 					Foundation,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "coop.plausible.${PRODUCT_NAME:identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tealium.TealiumCrashReporteriOS;
 				PRODUCT_NAME = TealiumCrashReporteriOS;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
