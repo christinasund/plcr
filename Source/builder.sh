@@ -55,7 +55,7 @@ lipo -create -output "${OUTPUT_FOLDER}/${FRAMEWORK}/${FRAMEWORK_NAME}" \
     "${BUILD_PATH}/${CONFIGURATION}-${SIMULATOR_TYPE}/${FRAMEWORK}/${FRAMEWORK_NAME}" \
 
 echo "Zipping framework for distribution"
-zip -r ${PROJECT_DIR}/"TealiumCrashReporteriOS.framework.zip" ${PROJECT_DIR}/"TealiumCrashReporteriOS.framework"
+zip ${PROJECT_DIR}/"TealiumCrashReporteriOS.framework.zip" ${PROJECT_DIR}/"TealiumCrashReporteriOS.framework"
 
 # copy Swift module mappings for the simulator
 if [ -d "${BUILD_PATH}/${CONFIGURATION}-${DEVICE_TYPE}/${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule" ]; then
