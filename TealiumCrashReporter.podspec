@@ -21,7 +21,8 @@ Pod::Spec.new do |s|
   s.description  = "This fork contains code that is not part of the core PLCrashReporter distribution.  This software is not provided by or maintained by Plausible Labs."
 
   s.homepage     = "https://github.com/Tealium/plcrashreporter" 
-  s.platform = :ios, "8.0"
+  s.platform = :ios, "10.0"
+  s.ios.deployment_target = "10.0"
   s.license      = { :type => "MIT" }
   s.author             = { "Jonathan Wong" => "jonathan.wong@tealium.com" }
 
