@@ -29,5 +29,7 @@ Pod::Spec.new do |s|
   s.source       = { :http => "https://github.com/Tealium/plcrashreporter/blob/master/TealiumCrashReporteriOS.framework.zip?raw=true" }
   s.requires_arc = false
   s.vendored_frameworks = "TealiumCrashReporteriOS.framework"
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'}
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'}
 
 end
