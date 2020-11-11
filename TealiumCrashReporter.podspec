@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TealiumCrashReporter"
-  s.version      = "1.3.9"
+  s.version      = "1.4.1"
   s.summary      = "Fork of the Plausible Labs PLCrashReporter repo."
   s.description  = "This fork contains code that is not part of the core PLCrashReporter distribution.  This software is not provided by or maintained by Plausible Labs."
 
@@ -29,7 +29,5 @@ Pod::Spec.new do |s|
   s.source       = { :http => "https://github.com/Tealium/plcrashreporter/blob/master/TealiumCrashReporteriOS.framework.zip?raw=true" }
   s.requires_arc = false
   s.vendored_frameworks = "TealiumCrashReporteriOS.framework"
-  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'}
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'}
 
 end
