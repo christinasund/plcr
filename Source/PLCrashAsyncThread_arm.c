@@ -37,65 +37,48 @@
 
 #if defined(__arm__) || defined(__arm64__)
 
-#define THREAD_STATE_GET(name, type, ts) (ts->arm_state. type . __ ## name)
+#if __DARWIN_UNIX03
+#define THREAD_STATE_REG_PREFIX(name) __ ## name
+#else
+#define THREAD_STATE_REG_PREFIX(name) name
+#endif
+
+#define THREAD_STATE_GET(name, type, ts) (ts->arm_state. type . THREAD_STATE_REG_PREFIX(name))
 #define THREAD_STATE_SET(name, type, ts, regnum, value) { \
     ts->valid_regs |= 1ULL << regnum; \
-    (ts->arm_state. type . __ ## name) = value; \
+    (ts->arm_state. type . THREAD_STATE_REG_PREFIX(name)) = value; \
 }
 
 #if defined(__LP64__)
 
+#if __DARWIN_OPAQUE_ARM_THREAD_STATE64
+#define THREAD_STATE_OPAQUE_PREFIX(name) __opaque_ ## name
+#define THREAD_STATE_OPAQUE_TYPE void *
+#else
+#define THREAD_STATE_OPAQUE_PREFIX THREAD_STATE_REG_PREFIX
+#define THREAD_STATE_OPAQUE_TYPE uint64_t
+#endif
+
 /*
- * Pointer authentication codes (on arm64e for example) must be stripped out.
+ * Pointer authentication codes (on arm64e for example) must be stripped out by applying ARM64_PTR_MASK bitmask.
  * See https://developer.apple.com/documentation/security/preparing_your_app_to_work_with_pointer_authentication
+ *
+ * Note: Even if pointer authentication (ptrauth) is not available at the compile time, the binary still can be used
+ * in an environment with PAC.
+ *
+ * Do not use arm_thread_state64_get_* to access to specific fields because arm64e injects additional checks that can
+ * prevent to get the values despite of the fact that the actual data was already read before.
  */
-#if __has_feature(ptrauth_calls)
-
-#include <ptrauth.h>
-
 #define THREAD_STATE_GET_PTR(name, type, ts) ({ \
-    plcrash_greg_t ptr = arm_thread_state64_get_ ## name (ts->arm_state. type); \
-    ptrauth_strip((void *) ptr, ptrauth_key_frame_pointer); \
-})
-#define THREAD_STATE_GET_FPTR(name, type, ts)  ({ \
-    plcrash_greg_t ptr = arm_thread_state64_get_ ## name ## _fptr (ts->arm_state. type); \
-    ptrauth_strip((void *) ptr, ptrauth_key_function_pointer); \
-})
-
-#define THREAD_STATE_SET_PTR(name, type, ts, regnum, value) { \
-    void *ptr = ptrauth_strip((void *)value, ptrauth_key_frame_pointer); \
-    ptr = ptrauth_sign_unauthenticated(ptr, ptrauth_key_frame_pointer, 0); \
-    ts->valid_regs |= 1ULL << regnum; \
-    arm_thread_state64_set_ ## name (ts->arm_state. type, ptr); \
-}
-#define THREAD_STATE_SET_FPTR(name, type, ts, regnum, value) { \
-    void *ptr = ptrauth_strip((void *)value, ptrauth_key_function_pointer); \
-    ptr = ptrauth_sign_unauthenticated(ptr, ptrauth_key_function_pointer, 0); \
-    ts->valid_regs |= 1ULL << regnum; \
-    arm_thread_state64_set_ ## name ## _fptr (ts->arm_state. type, ptr); \
-}
-
-#else // __has_feature(ptrauth_calls)
-
-/*
- * Even if pointer authentication is not available at the compile time, the binary still can be used in an environment with PAC.
- * In this case, we can apply bitmask as a workaround.
- */
-#define ARM64_PTR_MASK 0x0000000FFFFFFFFF
-
-#define THREAD_STATE_GET_PTR(name, type, ts) ({ \
-    plcrash_greg_t ptr = arm_thread_state64_get_ ## name (ts->arm_state. type); \
+    plcrash_greg_t ptr = (plcrash_greg_t) ts->arm_state. type . THREAD_STATE_OPAQUE_PREFIX(name); \
     (ptr & ARM64_PTR_MASK); \
 })
-#define THREAD_STATE_GET_FPTR(name, type, ts) THREAD_STATE_GET_PTR(name ## _fptr, type, ts)
-
+#define THREAD_STATE_GET_FPTR THREAD_STATE_GET_PTR
 #define THREAD_STATE_SET_PTR(name, type, ts, regnum, value) { \
     ts->valid_regs |= 1ULL << regnum; \
-    arm_thread_state64_set_ ## name (ts->arm_state. type, (void *)value); \
+    (ts->arm_state. type . THREAD_STATE_OPAQUE_PREFIX(name)) = (THREAD_STATE_OPAQUE_TYPE) value; \
 }
-#define THREAD_STATE_SET_FPTR(name, type, ts, regnum, value) THREAD_STATE_SET_PTR(name ## _fptr, type, ts, regnum, value)
-
-#endif // __has_feature(ptrauth_calls)
+#define THREAD_STATE_SET_FPTR THREAD_STATE_SET_PTR
 
 #else // __LP64__
 
@@ -311,23 +294,23 @@ plcrash_greg_t plcrash_async_thread_state_get_reg (const plcrash_async_thread_st
 
 static inline void plcrash_async_thread_state_set_reg_32 (plcrash_async_thread_state_t *ts, plcrash_regnum_t regnum, plcrash_greg_t reg) {
     switch (regnum) {
-        case PLCRASH_ARM_R0: THREAD_STATE_SET(r[0], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R1: THREAD_STATE_SET(r[1], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R2: THREAD_STATE_SET(r[2], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R3: THREAD_STATE_SET(r[3], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R4: THREAD_STATE_SET(r[4], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R5: THREAD_STATE_SET(r[5], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R6: THREAD_STATE_SET(r[6], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R7: THREAD_STATE_SET(r[7], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R8: THREAD_STATE_SET(r[8], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R9: THREAD_STATE_SET(r[9], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R10: THREAD_STATE_SET(r[10], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R11: THREAD_STATE_SET(r[11], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_R12: THREAD_STATE_SET(r[12], thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_SP: THREAD_STATE_SET(sp, thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_LR: THREAD_STATE_SET(lr, thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_PC: THREAD_STATE_SET(pc, thread.ts_32, ts, regnum, reg); break;
-        case PLCRASH_ARM_CPSR: THREAD_STATE_SET(cpsr, thread.ts_32, ts, regnum, reg); break;
+        case PLCRASH_ARM_R0: THREAD_STATE_SET(r[0], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R1: THREAD_STATE_SET(r[1], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R2: THREAD_STATE_SET(r[2], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R3: THREAD_STATE_SET(r[3], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R4: THREAD_STATE_SET(r[4], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R5: THREAD_STATE_SET(r[5], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R6: THREAD_STATE_SET(r[6], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R7: THREAD_STATE_SET(r[7], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R8: THREAD_STATE_SET(r[8], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R9: THREAD_STATE_SET(r[9], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R10: THREAD_STATE_SET(r[10], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R11: THREAD_STATE_SET(r[11], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_R12: THREAD_STATE_SET(r[12], thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_SP: THREAD_STATE_SET(sp, thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_LR: THREAD_STATE_SET(lr, thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_PC: THREAD_STATE_SET(pc, thread.ts_32, ts, regnum, (uint32_t)reg); break;
+        case PLCRASH_ARM_CPSR: THREAD_STATE_SET(cpsr, thread.ts_32, ts, regnum, (uint32_t)reg); break;
         default: __builtin_trap(); // Unsupported register
     }
 }
@@ -367,7 +350,7 @@ static inline void plcrash_async_thread_state_set_reg_64 (plcrash_async_thread_s
         case PLCRASH_ARM64_SP: THREAD_STATE_SET_PTR(sp, thread.ts_64, ts, regnum, reg); break;
         case PLCRASH_ARM64_LR: THREAD_STATE_SET_FPTR(lr, thread.ts_64, ts, regnum, reg); break;
         case PLCRASH_ARM64_PC: THREAD_STATE_SET_FPTR(pc, thread.ts_64, ts, regnum, reg); break;
-        case PLCRASH_ARM64_CPSR: THREAD_STATE_SET(cpsr, thread.ts_64, ts, regnum, reg); break;
+        case PLCRASH_ARM64_CPSR: THREAD_STATE_SET(cpsr, thread.ts_64, ts, regnum, (uint32_t)reg); break;
         default: __builtin_trap();
     }
 }
@@ -485,7 +468,7 @@ void plcrash_async_thread_state_clear_volatile_regs (plcrash_async_thread_state_
     size_t reg_count = plcrash_async_thread_state_get_reg_count(thread_state);
     for (size_t reg = 0; reg < reg_count; reg++) {
         /* Skip unset registers */
-        if (!plcrash_async_thread_state_has_reg(thread_state, reg))
+        if (!plcrash_async_thread_state_has_reg(thread_state, (uint32_t)reg))
             continue;
         
         /* Check for the register in the preservation table */
@@ -499,7 +482,7 @@ void plcrash_async_thread_state_clear_volatile_regs (plcrash_async_thread_state_
         
         /* If not preserved, clear */
         if (!preserved)
-            plcrash_async_thread_state_clear_reg(thread_state, reg);
+            plcrash_async_thread_state_clear_reg(thread_state, (uint32_t)reg);
     }
 }
 
