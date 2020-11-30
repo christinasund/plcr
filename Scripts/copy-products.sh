@@ -38,14 +38,8 @@ rm -rf "$PROJECT_DIR/iOS Framework"
 rm -rf "$PROJECT_DIR/$PROJECT_NAME.xcframework"
 
 # Copy frameworks
-cp -R "$BUILD_DIR/$CONFIGURATION-iphoneuniversal/$PROJECT_NAME.framework" "$PROJECT_DIR/iOS Framework"
+cp -R "$BUILD_DIR/$CONFIGURATION/iOS Framework" "$PROJECT_DIR/iOS Framework"
 cp -R "$BUILD_DIR/$CONFIGURATION-xcframework/$PROJECT_NAME.xcframework" "$PROJECT_DIR"
-
-# Remove extra files/folders
-rm "$PROJECT_DIR/iOS Framework/$PROJECT_NAME"
-rm -rf "$PROJECT_DIR/iOS Framework/Headers"
-rm "$PROJECT_DIR/iOS Framework/Info.plist"
-rm -rf "$PROJECT_DIR/iOS Framework/Modules"
 
 # Zip framework
 zip -r "Tealium$PROJECT_NAME.framework.zip" "./iOS Framework"
