@@ -14,7 +14,7 @@ if [ "$2" == "maccatalyst" ]; then
     env -i "PATH=$PATH" xcodebuild \
         SYMROOT="${SYMROOT}" VALIDATE_WORKSPACE=YES ENABLE_BITCODE=YES OBJROOT="${BUILT_PRODUCTS_DIR}" PROJECT_TEMP_DIR="${PROJECT_TEMP_DIR}" \
         ONLY_ACTIVE_ARCH=NO \
-        -project "${PROJECT_NAME}.xcodeproj" -configuration "${CONFIGURATION}" \
+        -project "${PROJECT_NAME}.xcodeproj" -configuration "Custom" \
         -scheme "$1" -destination 'platform=macOS,variant=Mac Catalyst'
 else
     env -i "PATH=$PATH" xcodebuild \
