@@ -3670,6 +3670,7 @@
 				);
 				"ARCHS[sdk=iphonesimulator*]" = "$(PL_SIMULATOR_ARCHS)";
 				DEFINES_MODULE = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_MASTER_OBJECT_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				MACH_O_TYPE = staticlib;
@@ -3696,6 +3697,7 @@
 				"ARCHS[sdk=iphonesimulator*]" = "$(PL_SIMULATOR_ARCHS)";
 				BITCODE_GENERATION_MODE = bitcode;
 				DEFINES_MODULE = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_MASTER_OBJECT_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				MACH_O_TYPE = staticlib;
