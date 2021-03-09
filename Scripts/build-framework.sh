@@ -20,6 +20,6 @@ else
     env -i "PATH=$PATH" xcodebuild \
         SYMROOT="${SYMROOT}" VALIDATE_WORKSPACE=YES ENABLE_BITCODE=YES OBJROOT="${BUILT_PRODUCTS_DIR}" PROJECT_TEMP_DIR="${PROJECT_TEMP_DIR}" \
         ONLY_ACTIVE_ARCH=NO \
-        -project "${PROJECT_NAME}.xcodeproj" -configuration "${CONFIGURATION}" \
+        -project "${PROJECT_NAME}.xcodeproj" -configuration "Custom" \
         -target "$1" -sdk "$2"
 fi
